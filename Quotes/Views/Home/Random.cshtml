@@ -1,0 +1,75 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@{
+    ViewData["Title"] = "Quote of the day";
+}
+
+
+@model Quotes.Models.View_Model.QuoteList
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+
+
+<style>
+    table, th, td {
+        border: 1px solid black;
+        width: 100%;
+        height: 70px;
+    }
+</style>
+
+
+<h1> </h1>
+
+<table class="table table-striped table-dark" align="left">
+    <thead>
+        <tr>
+            <th scope="col">
+                Id
+            </th>
+            <th scope="col">Quote</th>
+            <th scope="col">Author First</th>
+            <th scope="col">Author Last</th>
+            <th scope="col"> Date</th>
+            <th scope="col"> Citation </th>
+
+
+
+            <th scope="col"> Subject </th>
+          
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (QuoteByPeople x in Model.Quotes)
+        {
+           
+        <tr>
+            <th scope="row">@x.QId</th>
+            <td>@x.QuotesNote</td>
+            <td>@x.AuthorFirst</td>
+            <td>@x.AuthorLast</td>
+
+            <td>@x.Date.ToString("dd/MM/yyyy")</td>
+            <td>@x.Citation</td>
+            <td>@x.Subject</td>
+
+
+
+
+        </tr>
+
+        }
+
+    </tbody>
+</table>
+
+
+
+<button class="btn btn-danger"><a href="Home/AddQuote">Add Quote</a></button>
+
+
+

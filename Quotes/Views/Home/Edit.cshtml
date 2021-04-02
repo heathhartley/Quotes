@@ -1,0 +1,90 @@
+﻿@{
+    ViewBag.Title = "Added Quote";
+
+}
+@model Quotes.Models.View_Model.QuoteList
+
+<h1>@ViewData["Title"]</h1>
+
+
+<style>
+    table, th, td {
+        border: 1px solid black;
+        width: 100%;
+        height: 70px;
+    }
+</style>
+
+
+<h1> </h1>
+
+<table class="table table-striped table-dark" align="left">
+    <thead>
+        <tr>
+            <th scope="col">
+                Id
+            </th>
+            <th scope="col">Quote</th>
+            <th scope="col">Author First</th>
+            <th scope="col">Author Last</th>
+            <th scope="col"> Date</th>
+            <th scope="col"> Citation </th>
+
+
+
+            <th scope="col"> Subject </th>
+            <th scope="col"> Save </th>
+            <th scope="col"> Delete </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (QuoteByPeople x in Model.Quotes)
+        {
+            <tr>
+                <form method="post" asp-action="SaveChanges">
+                    <td>
+                        <label>@x.QId</label>
+                    </td>
+                    <td>
+                        <input name="QuotesNote" id="QuotesNote" value="@x.QuotesNote" size="10" />
+                    </td>
+                    <td>
+                        <input name="AuthorFirst" id="AuthorFirst" value="@x.AuthorFirst" size="6" />
+                    </td>
+                    <td>
+                        <input name="AuthorLast" id="AuthorLast" value="@x.AuthorLast" size="6" />
+                    </td>
+                    <td>
+                        <input name="Date" id="Date" value="@x.Date.ToString("dd/MM/yyyy")" size="8" />
+                    </td>
+
+                    <td>
+                        <input name="Citation" id="Citation" value="@x.Citation" size="10" />
+                    </td>
+                    <td>
+                        <input name="Subject" id="Subject" value="@x.Subject" size="10" />
+                    </td>
+
+                    <td>
+
+                        <button class="btn btn-primary">Save</button>
+                        <input name="QId" id="QId" type="hidden" value="@x.QId" />
+
+
+                    </td>
+
+
+                </form>
+                <td>
+                    <form method="post" asp-action="Delete">
+                        <input name="QId" id="QId" type="hidden" value="@x.QId" />
+                        <button class="btn btn-warning">Delete</button>
+                    </form>
+                </td>
+            </tr>
+
+        }
+
+    </tbody>
+</table>
